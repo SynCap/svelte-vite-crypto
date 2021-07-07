@@ -19,7 +19,7 @@ export default defineConfig({
 			preprocess: sveltePreprocess({}),
 			dev: !production,
 			stylus: {
-				prependData: `@require 'src/styles/global.styl'`
+				prependData: `@import 'src/styles/global.styl'`
 			},
 			postcss: {
 				plugins: [require('autoprefixer')()]
