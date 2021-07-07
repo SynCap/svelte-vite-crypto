@@ -1,0 +1,20 @@
+{
+	"private": true,
+	"scripts": {
+		"dev": "vite --host 192.168.1.200",
+		"build": "vite build"
+	},
+	"dependencies": {
+		"svelte": "^3.38.3"
+	},
+	"devDependencies": {
+		"esbuild": "^0.12.12",
+		"eslit": "^6.0.0",
+		"prettier": "^2.3.2",
+		"pug": "^3.0.2",
+		"stylus": "^0.54.8",
+		"svelte-hmr": "^0.14.4",
+		"svelte-preprocess": "^4.7.3",
+		"vite": "^2.3.8"
+	}
+}
