@@ -11,8 +11,8 @@ export default defineConfig({
 		emptyOutDir: true,
 	},
 	server: {
-		host: process.VITE_HOST ?? 'localhost',
-		port: process.VITE_PORT ?? 3000,
+		host: process.env.VITE_HOST ?? 'localhost',
+		port: process.env.VITE_PORT ?? 3000,
 	},
 	plugins: [
 		svelte({
