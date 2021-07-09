@@ -16,14 +16,16 @@ export default defineConfig({
 	},
 	plugins: [
 		svelte({
-			preprocess: sveltePreprocess({}),
+			preprocess: sveltePreprocess({
+				sourceMap: !production,
+				stylus: {
+					prependData: `@import 'src/styles/global.styl'`
+				},
+				postcss: {
+					plugins: [require('autoprefixer')()]
+				}
+			}),
 			dev: !production,
-			stylus: {
-				prependData: `@import 'src/styles/global.styl'`
-			},
-			postcss: {
-				plugins: [require('autoprefixer')()]
-			}
 		}),
 	],
 });
