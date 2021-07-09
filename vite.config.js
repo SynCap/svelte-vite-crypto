@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import { svelte } from './lib/vite-plugin-svelte';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 import sveltePreprocess from 'svelte-preprocess';
 import { transformSync } from 'esbuild';
 
@@ -32,7 +32,6 @@ export default defineConfig({
 					plugins: [require('autoprefixer')()]
 				}
 			}),
-			dev: !production,
 		}),
 	],
 });
