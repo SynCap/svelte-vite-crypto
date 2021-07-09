@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"types": ["svelte"],
+		"types": ["svelte","vite/client"],
 		"target": "esnext",
 		"module": "esnext",
 		"strict": true,
@@ -9,7 +9,7 @@
 		"isolatedModules": true,
 		"moduleResolution": "node",
 		"esModuleInterop": true,
-		"resolveJsonModule": true,
+		"resolveJsonModule": true
 	},
 	"include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]
 }
