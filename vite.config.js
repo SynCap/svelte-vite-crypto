@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import { svelte } from './lib/vite-plugin-svelte';
 import sveltePreprocess from 'svelte-preprocess';
+import { transformSync } from 'esbuild';
 
 const production = process.env.NODE_ENV === 'production';
 
@@ -18,6 +19,12 @@ export default defineConfig({
 		svelte({
 			preprocess: sveltePreprocess({
 				sourceMap: !production,
+				typescript({ content }) {
+					const { code, map } = transformSync(content, {
+						loader: 'ts',
+					});
+					return { code, map };
+				},
 				stylus: {
 					prependData: `@import 'src/styles/global.styl'`
 				},
