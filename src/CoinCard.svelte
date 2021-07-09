@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script lang="ts">
 	export let coin: TCoin;
 	let neg: boolean = false;
 	$: {neg = coin.priceChange1d < 0}
