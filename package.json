@@ -3,7 +3,7 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "cross-env NODE_ENV=production vite build",
-		"preview": "vite preview"
+		"preview": "cross-env NODE_ENV=production vite preview"
 	},
 	"dependencies": {
 		"svelte": "^3.38.3"
@@ -14,7 +14,6 @@
 		"autoprefixer": "^10.2.6",
 		"cross-env": "^7.0.3",
 		"esbuild": "^0.12.15",
-		"eslit": "^6.0.0",
 		"postcss": "^8.3.5",
 		"prettier": "^2.3.2",
 		"pug": "^3.0.2",
