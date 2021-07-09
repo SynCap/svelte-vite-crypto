@@ -5,7 +5,6 @@ specifiers:
   '@tsconfig/svelte': ^2.0.1
   autoprefixer: ^10.2.6
   cross-env: ^7.0.3
-  esbuild: ^0.12.15
   postcss: ^8.3.5
   prettier: ^2.3.2
   pug: ^3.0.2
@@ -13,6 +12,7 @@ specifiers:
   svelte: ^3.38.3
   svelte-hmr: ^0.14.4
   svelte-preprocess: ^4.7.3
+  typescript: ^4.3.5
   vite: ^2.4.1
 
 dependencies:
@@ -23,13 +23,13 @@ devDependencies:
   '@tsconfig/svelte': 2.0.1
   autoprefixer: 10.2.6_postcss@8.3.5
   cross-env: 7.0.3
-  esbuild: 0.12.15
   postcss: 8.3.5
   prettier: 2.3.2
   pug: 3.0.2
   stylus: 0.54.8
   svelte-hmr: 0.14.4_svelte@3.38.3
-  svelte-preprocess: 4.7.3_7ad01c47726ee5873015128234ddf80d
+  svelte-preprocess: 4.7.3_59d8e3d1cccb9edcfec4d392351d75e7
+  typescript: 4.3.5
   vite: 2.4.1
 
 packages:
@@ -713,7 +713,7 @@ packages:
       svelte: 3.38.3
     dev: true
 
-  /svelte-preprocess/4.7.3_7ad01c47726ee5873015128234ddf80d:
+  /svelte-preprocess/4.7.3_59d8e3d1cccb9edcfec4d392351d75e7:
     resolution: {integrity: sha512-Zx1/xLeGOIBlZMGPRCaXtlMe4ZA0faato5Dc3CosEqwu75MIEPuOstdkH6cy+RYTUYynoxzNaDxkPX4DbrPwRA==}
     engines: {node: '>= 9.11.2'}
     requiresBuild: true
@@ -762,6 +762,7 @@ packages:
       strip-indent: 3.0.0
       stylus: 0.54.8
       svelte: 3.38.3
+      typescript: 4.3.5
     dev: true
 
   /svelte/3.38.3:
@@ -776,6 +777,12 @@ packages:
 
   /token-stream/1.0.0:
     resolution: {integrity: sha1-zCAOqyYT9BZtJ/+a/HylbUnfbrQ=}
+    dev: true
+
+  /typescript/4.3.5:
+    resolution: {integrity: sha512-DqQgihaQ9cUrskJo9kIyW/+g0Vxsk8cDtZ52a3NGh0YNTfpUSArXSohyUGnvbPazEPLu398C0UxmKSOrPumUzA==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
     dev: true
 
   /urix/0.1.0:
