@@ -5,6 +5,8 @@ import { transformSync } from 'esbuild';
 
 const production = process.env.NODE_ENV === 'production';
 
+console.log('READ vite.config.js');
+
 export default defineConfig({
 	root: 'src/',
 	build: {
@@ -18,14 +20,9 @@ export default defineConfig({
 	},
 	plugins: [
 		svelte({
+			useVitePreprocess: true,
 			preprocess: sveltePreprocess({
 				sourceMap: !production,
-				typescript({ content }) {
-					const { code, map } = transformSync(content, {
-						loader: 'ts',
-					});
-					return { code, map };
-				},
 				stylus: {
 					prependData: `@require 'src/styles/global.styl'\n`,
 				},
