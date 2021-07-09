@@ -2,8 +2,10 @@ lockfileVersion: 5.3
 
 specifiers:
   '@tsconfig/svelte': ^2.0.1
+  autoprefixer: ^10.2.6
   esbuild: ^0.12.15
   eslit: ^6.0.0
+  postcss: ^8.3.5
   prettier: ^2.3.2
   pug: ^3.0.2
   stylus: ^0.54.8
@@ -17,13 +19,15 @@ dependencies:
 
 devDependencies:
   '@tsconfig/svelte': 2.0.1
+  autoprefixer: 10.2.6_postcss@8.3.5
   esbuild: 0.12.15
   eslit: 6.0.0
+  postcss: 8.3.5
   prettier: 2.3.2
   pug: 3.0.2
   stylus: 0.54.8
   svelte-hmr: 0.14.4_svelte@3.38.3
-  svelte-preprocess: 4.7.3_e0b19864441ff94cf2939e9d40b8e262
+  svelte-preprocess: 4.7.3_7ad01c47726ee5873015128234ddf80d
   vite: 2.4.1
 
 packages:
@@ -300,6 +304,22 @@ packages:
     hasBin: true
     dev: true
 
+  /autoprefixer/10.2.6_postcss@8.3.5:
+    resolution: {integrity: sha512-8lChSmdU6dCNMCQopIf4Pe5kipkAGj/fvTMslCsih0uHpOrXOPUEVOmYMMqmw3cekQkSD7EhIeuYl5y0BLdKqg==}
+    engines: {node: ^10 || ^12 || >=14}
+    hasBin: true
+    peerDependencies:
+      postcss: ^8.1.0
+    dependencies:
+      browserslist: 4.16.6
+      caniuse-lite: 1.0.30001243
+      colorette: 1.2.2
+      fraction.js: 4.1.1
+      normalize-range: 0.1.2
+      postcss: 8.3.5
+      postcss-value-parser: 4.1.0
+    dev: true
+
   /babel-walk/3.0.0-canary-5:
     resolution: {integrity: sha512-GAwkz0AihzY5bkwIY5QDR+LvsRQgB/B+1foMPvi0FZPMl5fjD7ICiznUiBdLYMH1QYe6vqu4gWYytZOccLouFw==}
     engines: {node: '>= 10.0.0'}
@@ -463,6 +483,10 @@ packages:
       glob: 7.1.7
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /fraction.js/4.1.1:
+    resolution: {integrity: sha512-MHOhvvxHTfRFpF1geTK9czMIZ6xclsEor2wkIGYYq+PxcQqT7vStJqjhe6S1TenZrMZzo+wlqOufBDVepUEgPg==}
     dev: true
 
   /fs.realpath/1.0.0:
@@ -630,6 +654,11 @@ packages:
     resolution: {integrity: sha512-uW7fodD6pyW2FZNZnp/Z3hvWKeEW1Y8R1+1CnErE8cXFXzl5blBOoVB41CvMer6P6Q0S5FXDwcHgFd1Wj0U9zg==}
     dev: true
 
+  /normalize-range/0.1.2:
+    resolution: {integrity: sha1-LRDAa9/TEuqXd2laTShDlFa3WUI=}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
   /object-assign/4.1.1:
     resolution: {integrity: sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=}
     engines: {node: '>=0.10.0'}
@@ -648,6 +677,10 @@ packages:
 
   /path-parse/1.0.7:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
+    dev: true
+
+  /postcss-value-parser/4.1.0:
+    resolution: {integrity: sha512-97DXOFbQJhk71ne5/Mt6cOu6yxsSfM0QGQyl0L25Gca4yGWEGJaig7l7gbCX623VqTBNGLRLaVUCnNkcedlRSQ==}
     dev: true
 
   /postcss/8.3.5:
@@ -869,7 +902,7 @@ packages:
       svelte: 3.38.3
     dev: true
 
-  /svelte-preprocess/4.7.3_e0b19864441ff94cf2939e9d40b8e262:
+  /svelte-preprocess/4.7.3_7ad01c47726ee5873015128234ddf80d:
     resolution: {integrity: sha512-Zx1/xLeGOIBlZMGPRCaXtlMe4ZA0faato5Dc3CosEqwu75MIEPuOstdkH6cy+RYTUYynoxzNaDxkPX4DbrPwRA==}
     engines: {node: '>= 9.11.2'}
     requiresBuild: true
@@ -913,6 +946,7 @@ packages:
       '@types/pug': 2.0.5
       '@types/sass': 1.16.1
       detect-indent: 6.1.0
+      postcss: 8.3.5
       pug: 3.0.2
       strip-indent: 3.0.0
       stylus: 0.54.8
