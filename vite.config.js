@@ -33,7 +33,6 @@ export default defineConfig({
 					plugins: [require('autoprefixer')()]
 				}
 			}),
-			dev: !production,
 		}),
 	],
 });
