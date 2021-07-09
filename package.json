@@ -9,8 +9,10 @@
 	},
 	"devDependencies": {
 		"@tsconfig/svelte": "^2.0.1",
+		"autoprefixer": "^10.2.6",
 		"esbuild": "^0.12.15",
 		"eslit": "^6.0.0",
+		"postcss": "^8.3.5",
 		"prettier": "^2.3.2",
 		"pug": "^3.0.2",
 		"stylus": "^0.54.8",
