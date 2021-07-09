@@ -17,6 +17,7 @@ export default defineConfig({
 	},
 	plugins: [
 		svelte({
+			useVitePreprocess: true,
 			preprocess: sveltePreprocess({
 				sourceMap: !production,
 				typescript({ content }) {
