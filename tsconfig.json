@@ -11,6 +11,5 @@
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
 	},
-	"include": ["src/", "lib/", "types/"],
-	"extends": "@tsconfig/svelte/tsconfig.json"
+	"include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]
 }
