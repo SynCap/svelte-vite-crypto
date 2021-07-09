@@ -8,13 +8,14 @@
 		"svelte": "^3.38.3"
 	},
 	"devDependencies": {
-		"esbuild": "^0.12.12",
+		"@tsconfig/svelte": "^2.0.1",
+		"esbuild": "^0.12.15",
 		"eslit": "^6.0.0",
 		"prettier": "^2.3.2",
 		"pug": "^3.0.2",
 		"stylus": "^0.54.8",
 		"svelte-hmr": "^0.14.4",
 		"svelte-preprocess": "^4.7.3",
-		"vite": "^2.3.8"
+		"vite": "^2.4.1"
 	}
 }
