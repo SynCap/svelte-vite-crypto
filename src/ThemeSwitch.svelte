@@ -42,7 +42,7 @@ setTheme(checkTheme());
 :global(:root)
 	--color-fg: #333
 	--color-bg: #fbfbfe
-	--color-primary: #00aaff
+	--color-primary: #36c
 	--color-accent: tomato
 
 :global([data-theme='dark'])
