@@ -1,7 +1,15 @@
 import { defineConfig } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 import sveltePreprocess from 'svelte-preprocess';
-import { transformSync } from 'esbuild';
+const SVELTE_IMPORTS = [
+	'svelte/animate',
+	'svelte/easing',
+	'svelte/internal',
+	'svelte/motion',
+	'svelte/store',
+	'svelte/transition',
+	'svelte'
+];
 
 export default defineConfig(({ command, mode }) => {
 	console.log('command: %s, mode: %s', command, mode);
@@ -17,6 +25,9 @@ export default defineConfig(({ command, mode }) => {
 			port: process.env.VITE_PORT ?? 3000,
 			minify: isProduction,
 		},
+		optimizeDeps: {
+			include: [...SVELTE_IMPORTS]
+		},
 		plugins: [
 			svelte({
 				useVitePreprocess: true,
@@ -27,6 +38,10 @@ export default defineConfig(({ command, mode }) => {
 					},
 					postcss: {
 						plugins: [require('autoprefixer')()]
+					},
+					pug: {
+						compileDebug: !isProduction,
+						pretty: !isProduction,
 					}
 				}),
 			}),
