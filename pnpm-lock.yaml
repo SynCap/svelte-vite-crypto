@@ -11,6 +11,7 @@ specifiers:
   svelte: ^3.38.3
   svelte-hmr: ^0.14.4
   svelte-preprocess: ^4.7.4
+  typescript: ^4.3.5
   vite: ^2.4.1
 
 dependencies:
@@ -25,7 +26,8 @@ devDependencies:
   pug: 3.0.2
   stylus: 0.54.8
   svelte-hmr: 0.14.4_svelte@3.38.3
-  svelte-preprocess: 4.7.4_7ad01c47726ee5873015128234ddf80d
+  svelte-preprocess: 4.7.4_59d8e3d1cccb9edcfec4d392351d75e7
+  typescript: 4.3.5
   vite: 2.4.1
 
 packages:
@@ -671,7 +673,7 @@ packages:
       svelte: 3.38.3
     dev: true
 
-  /svelte-preprocess/4.7.4_7ad01c47726ee5873015128234ddf80d:
+  /svelte-preprocess/4.7.4_59d8e3d1cccb9edcfec4d392351d75e7:
     resolution: {integrity: sha512-mDAmaltQl6e5zU2VEtoWEf7eLTfuOTGr9zt+BpA3AGHo8MIhKiNSPE9OLTCTOMgj0vj/uL9QBbaNmpG4G1CgIA==}
     engines: {node: '>= 9.11.2'}
     requiresBuild: true
@@ -720,6 +722,7 @@ packages:
       strip-indent: 3.0.0
       stylus: 0.54.8
       svelte: 3.38.3
+      typescript: 4.3.5
     dev: true
 
   /svelte/3.38.3:
@@ -734,6 +737,12 @@ packages:
 
   /token-stream/1.0.0:
     resolution: {integrity: sha1-zCAOqyYT9BZtJ/+a/HylbUnfbrQ=}
+    dev: true
+
+  /typescript/4.3.5:
+    resolution: {integrity: sha512-DqQgihaQ9cUrskJo9kIyW/+g0Vxsk8cDtZ52a3NGh0YNTfpUSArXSohyUGnvbPazEPLu398C0UxmKSOrPumUzA==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
     dev: true
 
   /urix/0.1.0:
