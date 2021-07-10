@@ -1,6 +1,15 @@
 import { defineConfig } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 import sveltePreprocess from 'svelte-preprocess';
+const SVELTE_IMPORTS = [
+	'svelte/animate',
+	'svelte/easing',
+	'svelte/internal',
+	'svelte/motion',
+	'svelte/store',
+	'svelte/transition',
+	'svelte'
+];
 
 export default defineConfig(({ command, mode }) => {
 	console.log('command: %s, mode: %s', command, mode);
@@ -15,6 +24,9 @@ export default defineConfig(({ command, mode }) => {
 			host: process.env.VITE_HOST ?? 'localhost',
 			port: process.env.VITE_PORT ?? 3000,
 			minify: isProduction,
+		},
+		optimizeDeps: {
+			include: [...SVELTE_IMPORTS]
 		},
 		plugins: [
 			svelte({
