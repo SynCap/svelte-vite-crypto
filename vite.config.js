@@ -26,6 +26,10 @@ export default defineConfig(({ command, mode }) => {
 					},
 					postcss: {
 						plugins: [require('autoprefixer')()]
+					},
+					pug: {
+						compileDebug: !isProduction,
+						pretty: !isProduction,
 					}
 				}),
 			}),
