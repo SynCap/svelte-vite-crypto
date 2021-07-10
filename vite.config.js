@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 import sveltePreprocess from 'svelte-preprocess';
-import { transformSync } from 'esbuild';
 
 export default defineConfig(({ command, mode }) => {
 	console.log('command: %s, mode: %s', command, mode);
