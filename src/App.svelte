@@ -1,6 +1,7 @@
 <script lang="ts">
 	// src/App.svelte
 
+	import type {TCoin, TCoinList, TFetchQuery} from './global';
 	import CoinCard from './CoinCard.svelte';
 	import IsBusy from './IsBusy.svelte';
 	import ThemeSwitch from './ThemeSwitch.svelte';

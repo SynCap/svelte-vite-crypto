@@ -1,4 +1,7 @@
 <script lang="ts">
+	// src/ConCard.svelte
+
+	import type {TCoin} from './global';
 	export let coin: TCoin;
 	let neg: boolean = false;
 	$: {neg = coin.priceChange1d < 0}
