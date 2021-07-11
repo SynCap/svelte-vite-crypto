@@ -39,3 +39,8 @@ export interface THistoryQuery {
 		period?: TChartPeriod,
 		coinId?: string,
 	}
+
+export interface TMinMax {
+	min?: number,
+	max?: number
+}
