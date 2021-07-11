@@ -1,7 +1,7 @@
 <script lang='ts'>
 	// src/LineSpark.svelte
 
-	import type {TCoinHistory} from './global';
+	import type {TCoinHistory, TMinMax} from './global';
 
 	import { scaleLinear } from 'd3-scale';
 	export let history: TCoinHistory;
