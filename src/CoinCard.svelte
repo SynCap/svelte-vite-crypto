@@ -23,7 +23,8 @@
 				span.name {coin.name}
 		span.symbol {coin.symbol}
 	.visual
-		LineSpark(history='{coin.history}')
+		+if('coin.history.length')
+			LineSpark(history='{coin.history}')
 	.data
 		.volume(title='Volume') { (coin.volume).toLocaleString('en-us', {style:'currency', currency: 'usd'}) }
 		.change(title='change' class:neg) { coin.priceChange1d }%
@@ -42,7 +43,7 @@
 		.visual
 			overflow auto
 			resize vertical
-			min-width 4rem
+			min-height 1rem
 
 		.title
 			display flex
