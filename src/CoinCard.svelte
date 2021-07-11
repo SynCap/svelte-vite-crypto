@@ -1,11 +1,15 @@
 <script lang="ts">
 	// src/ConCard.svelte
 
+	import LineSpark from './LineSpark.svelte';
+
 	import type {TCoin} from './global';
-	import {LineSpark} from './LineSpark.svelte';
+
 	export let coin: TCoin;
+
 	let neg: boolean = false;
 	$: {neg = coin.priceChange1d < 0}
+
 </script>
 
 <template lang="pug">
