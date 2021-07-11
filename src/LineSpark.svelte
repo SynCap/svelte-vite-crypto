@@ -4,7 +4,8 @@
 	import type {TCoinHistory} from './global';
 
 	import { scaleLinear } from 'd3-scale';
-	export let history: TCoinHistory = [];
+
+	export let history: TCoinHistory;
 
 	let width = 500;
 	let height = 500;
@@ -26,13 +27,15 @@
 				},
 			{min: Infinity , max: 0}
 		)
+
 	$:	minY = minimaxY.min;
 	$:	maxY = minimaxY.max;
 
 	$: minX = history[0][0];
 	$: maxX = history[history.length - 1][0];
+
 	$: path = `M${history.map(p => `${xScale(p[0])},${yScale(p[1])}`).join('L')}`;
-	$: area = `${path}L${xScale(maxX)},${yScale(0)}L${xScale(minX)},${yScale(0)}Z`;
+	// $: area = `${path}L${xScale(maxX)},${yScale(0)}L${xScale(minX)},${yScale(0)}Z`;
 
 </script>
 
