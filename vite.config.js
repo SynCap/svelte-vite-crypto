@@ -19,6 +19,11 @@ export default defineConfig(({ command, mode }) => {
 		build: {
 			outDir: '../dist/',
 			emptyOutDir: true,
+			rollupOptions: {
+				external: [
+					'@types/d3-scale',
+				]
+			}
 		},
 		server: {
 			host: process.env.VITE_HOST ?? 'localhost',
