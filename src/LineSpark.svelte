@@ -6,8 +6,8 @@
 	import { scaleLinear } from 'd3-scale';
 	export let history: TCoinHistory;
 
-	let width: number = 250;
-	let height: number = 50;
+	export let width: number = 250;
+	export let height: number = 50;
 
 	// const xScale = v => v * width / (maxX - minX)
 
@@ -21,7 +21,7 @@
 		.domain([minY, maxY])
 		.range([height - padding, padding]);
 
-	$: minimaxY = history.reduce( (m, v) => {
+	$: minimaxY = history.reduce( (m: TMinMax, v: number[]) => {
 				return {
 					min: (v[1] < m.min ? v[1] : m.min),
 					max: (v[1] > m.max ? v[1] : m.max) }
@@ -40,39 +40,30 @@
 
 </script>
 
-<div class="chart" bind:clientWidth={width} bind:clientHeight={height}>
-	<svg preserveAspectRatio="none" {width} {height}>
-		<path class="path-line" d={path} />
-		<path class="path-area" d={area} />
-	</svg>
-</div>
+<svg class="line-spark" preserveAspectRatio="none" viewBox="0 0 {width} {height}">
+	<path class="path-line" d={path} />
+	<path class="path-area" d={area} />
+</svg>
 
 <style lang='stylus'>
 
-	.chart
+	svg.line-spark
 		width 100%
-		max-width 500px
-		margin-left auto
-		margin-right auto
-
-	svg
-		position relative
-		width 100%
-		height 100%
-		overflow visible
-		background #000
+		height @width
+		background alpha(black, .5)
 
 	.path
 
 		&-line
 			fill none
-			stroke hsl(150,70%,50%)
+			stroke var(--color-primary)
 			stroke-linejoin round
 			stroke-linecap round
 			stroke-width 2.5
 
 		&-area
-			fill hsla(170,70%,50%,.3)
+			fill var(--color-primary)
+			opacity .5
 			stroke none
 
 </style>

@@ -18,17 +18,15 @@
 
 	let coins: TCoin[] = [];
 
-	$: {
-		lenCoinList = coins.length ? coins.length : 0;
-	}
+	$: lenCoinList = coins.length ? coins.length : 0;
 
-	const defaultPeriod: TChartPeriod = '1w';
-	const defaultCoinId: string = 'bitcoin';
+	const defPeriod: TChartPeriod = '1w';
+	const defCoinId: string = 'bitcoin';
 
 	const urlCoins = (q: TCoinQuery = { start: fetchStart, limit: fetchLimit }): string =>
 		`https://api.coinstats.app/public/v1/coins?skip=${q.start}&limit=${q.limit}`;
 
-	const urlHistory = (q: THistoryQuery = {period: defaultPeriod, coinId: defaultCoinId}): string =>
+	const urlHistory = (q: THistoryQuery = {period: defPeriod, coinId: defCoinId}): string =>
 		`https://api.coinstats.app/public/v1/charts?period=${q.period}&coinId=${q.coinId}`;
 
 	function calcFetchLimit(): void {
@@ -36,19 +34,29 @@
 		console.log('fetchLimit: %d', fetchLimit);
 	}
 
-	async function fetchCoins(q: TCoinQuery = { start: fetchStart, limit: fetchLimit }): Promise<TCoinList> {
+	async function fetchCoins(
+		q: TCoinQuery = { start: fetchStart, limit: fetchLimit }
+	): Promise<TCoinList> {
 
 		isLoading = true;
 
 		const res = await fetch(urlCoins(q))
 			.then((response) => response.json())
-			.then((data) => data.coins);
+			.then((data) => data.coins)
+			.then( async coins => {
+				return coins;
+			});
 
-		res.history = await fetch(urlHistory({coinId: res.id}))
-			.then((response) => response.json())
-			.then(data => data.chart)
+		res.forEach(async coin => {
+			coin.historyUrl = urlHistory({period:defPeriod, coinId: coin.id});
+			coin.history = await fetch(coin.historyUrl)
+					.then((response) => response.json())
+					.then(data => data.chart);
+		})
 
 		window.setTimeout(ensureInView, 700);
+
+		console.log('coins:', res);
 
 		isLoading = false;
 
@@ -109,37 +117,39 @@
 </script>
 
 <template lang="pug">
-mixin barControls
-	#controls.controls
-		button(on:click='{ fetchFirst }') &lang;&lang; &lang;&lang;
-		button(on:click='{ fetchBack }') &lang;&lang;
-		button(on:click='{ fetchMore }') &rang;&rang;
-		button(on:click='{ fetchThis }') &#10227;
 
-svlete:head
-	title Crypto Tracker
+	mixin barControls
+		#controls.controls
+			button(on:click='{ fetchFirst }') &lang;&lang; &lang;&lang;
+			button(on:click='{ fetchBack }') &lang;&lang;
+			button(on:click='{ fetchMore }') &rang;&rang;
+			button(on:click='{ fetchThis }') &#10227;
 
-main
-	h1 {name}
+	svlete:head
+		title Crypto Tracker
 
-	article.coinlist
-		+each('coins as coin')
-			CoinCard({coin})
+	main
+		h1 {name}
 
-	+if('coins.length')
-		+barControls
+		article.coinlist
+			+each('coins as coin (coin.id)')
+				CoinCard({coin})
 
-footer
-	.info
-		| Data by
-		=' '
-		a.coinstats(href='https://www.coinstats.app' target='_new') Coin
-			b Stats
-	.knobs
-		ThemeSwitch
+		+if('coins.length')
+			+barControls
 
-IsBusy(active='{isLoading}')
-GithubCorner
+	footer
+		.info
+			| Data by
+			=' '
+			a.coinstats(href='https://www.coinstats.app' target='_new') Coin
+				b Stats
+
+		.knobs
+			ThemeSwitch
+
+	IsBusy(active='{isLoading}')
+	GithubCorner
 
 </template>
 
