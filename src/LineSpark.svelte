@@ -36,39 +36,43 @@
 	$: maxX = history[history.length - 1][0];
 
 	$: path = `M${history.map(p => `${xScale(p[0])},${yScale(p[1])}`).join('L')}`;
-	// $: area = `${path}L${xScale(maxX)},${yScale(0)}L${xScale(minX)},${yScale(0)}Z`;
+	$: area = `${path}L${xScale(maxX)},${yScale(minY)}L${xScale(minX)},${yScale(minY)}Z`;
 
 </script>
 
 <div class="chart" bind:clientWidth={width} bind:clientHeight={height}>
-	<svg {width} {height}>
-		<!-- data -->
-		<path class="path-line" d={path}></path>
+	<svg preserveAspectRatio="none" {width} {height}>
+		<path class="path-line" d={path} />
+		<path class="path-area" d={area} />
 	</svg>
 </div>
 
-<style>
-	.chart {
-		width: 100%;
-		max-width: 500px;
-		margin-left: auto;
-		margin-right: auto;
-	}
+<style lang='stylus'>
 
-	svg {
-		position: relative;
-		width: 100%;
-		height: 100%;
-		overflow: visible;
-		background: #000;
-	}
+	.chart
+		width 100%
+		max-width 500px
+		margin-left auto
+		margin-right auto
 
-	.path-line {
-		fill: none;
-		stroke: hsl(150,70%,50%);
-		stroke-linejoin: round;
-		stroke-linecap: round;
-		stroke-width: 5;
-	}
+	svg
+		position relative
+		width 100%
+		height 100%
+		overflow visible
+		background #000
+
+	.path
+
+		&-line
+			fill none
+			stroke hsl(150,70%,50%)
+			stroke-linejoin round
+			stroke-linecap round
+			stroke-width 2.5
+
+		&-area
+			fill hsla(170,70%,50%,.3)
+			stroke none
 
 </style>
