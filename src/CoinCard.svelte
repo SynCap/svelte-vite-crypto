@@ -23,7 +23,7 @@
 				span.name {coin.name}
 		span.symbol {coin.symbol}
 	.visual
-		+if('coin.history.length')
+		+if('coin.history')
 			LineSpark(history='{coin.history}')
 	.data
 		.volume(title='Volume') { (coin.volume).toLocaleString('en-us', {style:'currency', currency: 'usd'}) }
@@ -44,6 +44,8 @@
 			overflow auto
 			resize vertical
 			height 3rem
+			min-height 2.5rem
+			max-height 7rem
 			margin .3rem 0
 
 		.title
@@ -80,6 +82,7 @@
 
 		.rank
 			background-color: #bbb;
+			color var(--color-bg)
 			border-radius: 0.4rem;
 			font-size: 0.7rem;
 			font-weight: 300;

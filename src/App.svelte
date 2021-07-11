@@ -20,7 +20,7 @@
 
 	$: lenCoinList = coins.length ? coins.length : 0;
 
-	const defPeriod: TChartPeriod = '1w';
+	const defPeriod: TChartPeriod = '1m';
 	const defCoinId: string = 'bitcoin';
 
 	const urlCoins = (q: TCoinQuery = { start: fetchStart, limit: fetchLimit }): string =>

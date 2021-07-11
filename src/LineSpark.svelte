@@ -4,7 +4,7 @@
 	import type {TCoinHistory, TMinMax} from './global';
 
 	import { scaleLinear } from 'd3-scale';
-	export let history: TCoinHistory;
+	export let history: TCoinHistory = [];
 
 	export let width: number = 250;
 	export let height: number = 50;
@@ -19,7 +19,7 @@
 
 	$: yScale = scaleLinear()
 		.domain([minY, maxY])
-		.range([height - padding, padding]);
+		.range([height - 2*padding, 2*padding]);
 
 	$: minimaxY = history.reduce( (m: TMinMax, v: number[]) => {
 				return {
@@ -50,20 +50,20 @@
 	svg.line-spark
 		width 100%
 		height @width
-		background alpha(black, .5)
+		background alpha(black, .1)
 
 	.path
 
 		&-line
 			fill none
-			stroke var(--color-primary)
+			stroke var(--color-accent)
 			stroke-linejoin round
 			stroke-linecap round
-			stroke-width 2.5
+			stroke-width 1px
 
 		&-area
-			fill var(--color-primary)
-			opacity .5
+			fill var(--color-accent)
+			opacity .2
 			stroke none
 
 </style>
