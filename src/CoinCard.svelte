@@ -2,6 +2,7 @@
 	// src/ConCard.svelte
 
 	import type {TCoin} from './global';
+	import {LineSpark} from './LineSpark.svelte';
 	export let coin: TCoin;
 	let neg: boolean = false;
 	$: {neg = coin.priceChange1d < 0}
@@ -17,6 +18,8 @@
 			+else()
 				span.name {coin.name}
 		span.symbol {coin.symbol}
+	.visual
+		LineSpark(history='{coin.history}')
 	.data
 		.volume(title='Volume') { (coin.volume).toLocaleString('en-us', {style:'currency', currency: 'usd'}) }
 		.change(title='change' class:neg) { coin.priceChange1d }%
@@ -31,6 +34,11 @@
 		padding 1rem
 		border-radius .5rem
 		border-top 0.15px solid silver
+
+		.visual
+			overflow auto
+			resize vertical
+			min-width 4rem
 
 		.title
 			display flex
