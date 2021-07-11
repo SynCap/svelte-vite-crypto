@@ -12,9 +12,11 @@
 
 	// const xScale = v => v * width / (maxX - minX)
 
+	const padding: number = 1;
+
 	$: xScale =	scaleLinear()
 		.domain([minX, maxX])
-		.range([0, width]);
+		.range([padding, width - padding]);
 
 	$: yScale = scaleLinear()
 		.domain([minY, maxY])
