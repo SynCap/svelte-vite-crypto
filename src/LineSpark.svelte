@@ -4,11 +4,10 @@
 	import type {TCoinHistory} from './global';
 
 	import { scaleLinear } from 'd3-scale';
-
 	export let history: TCoinHistory;
 
-	let width = 500;
-	let height = 500;
+	let width: number = 250;
+	let height: number = 50;
 
 	// const xScale = v => v * width / (maxX - minX)
 
@@ -20,7 +19,7 @@
 
 	$: yScale = scaleLinear()
 		.domain([minY, maxY])
-		.range([height, 0]);
+		.range([height - padding, padding]);
 
 	$: minimaxY = history.reduce( (m, v) => {
 				return {
