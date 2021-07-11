@@ -164,7 +164,7 @@ GithubCorner
 				vertical-align text-bottom
 
 			b
-				font-weight 500
+				font-weight 400
 
 	h1
 		text-align center
