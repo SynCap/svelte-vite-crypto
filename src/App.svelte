@@ -1,10 +1,11 @@
 <script lang="ts">
 	// src/App.svelte
 
-	import type {TCoin, TCoinList, TFetchQuery} from './global';
+	import type {TCoin, TCoinList, TCoinQuery, THistoryQuery, TChartPeriod} from './global';
 	import CoinCard from './CoinCard.svelte';
 	import IsBusy from './IsBusy.svelte';
 	import ThemeSwitch from './ThemeSwitch.svelte';
+	import GithubCorner from './GithubCorner.svelte';
 	import { onMount } from 'svelte';
 
 	let name: string = 'Crypto Tracker';
@@ -17,27 +18,45 @@
 
 	let coins: TCoin[] = [];
 
-	$: {
-		lenCoinList = coins.length ? coins.length : 0;
-	}
+	$: lenCoinList = coins.length ? coins.length : 0;
 
-	const urlFetch = (q: TFetchQuery = { start: fetchStart, limit: fetchLimit }): string =>
+	const defPeriod: TChartPeriod = '1m';
+	const defCoinId: string = 'bitcoin';
+
+	const urlCoins = (q: TCoinQuery = { start: fetchStart, limit: fetchLimit }): string =>
 		`https://api.coinstats.app/public/v1/coins?skip=${q.start}&limit=${q.limit}`;
+
+	const urlHistory = (q: THistoryQuery = {period: defPeriod, coinId: defCoinId}): string =>
+		`https://api.coinstats.app/public/v1/charts?period=${q.period}&coinId=${q.coinId}`;
 
 	function calcFetchLimit(): void {
 		fetchLimit = gridRows * (0 | (document.querySelector('.coinlist').clientWidth / 336));
 		console.log('fetchLimit: %d', fetchLimit);
 	}
 
-	async function fetchCoins(q: TFetchQuery = { start: fetchStart, limit: fetchLimit }): Promise<TCoinList> {
+	async function fetchCoins(
+		q: TCoinQuery = { start: fetchStart, limit: fetchLimit }
+	): Promise<TCoinList> {
 
 		isLoading = true;
 
-		const res = await fetch(urlFetch(q))
+		const res = await fetch(urlCoins(q))
 			.then((response) => response.json())
-			.then((data) => data.coins);
+			.then((data) => data.coins)
+			.then( async coins => {
+				return coins;
+			});
+
+		res.forEach(async coin => {
+			coin.historyUrl = urlHistory({period:defPeriod, coinId: coin.id});
+			coin.history = await fetch(coin.historyUrl)
+					.then((response) => response.json())
+					.then(data => data.chart);
+		})
 
 		window.setTimeout(ensureInView, 700);
+
+		console.log('coins:', res);
 
 		isLoading = false;
 
@@ -48,7 +67,7 @@
 		coins = await fetchCoins({ start: 0, limit: fetchLimit });
 	}
 
-	async function fetchMore(q: TFetchQuery = {start: fetchStart, limit: fetchLimit}): Promise<void> {
+	async function fetchMore(q: TCoinQuery = {start: fetchStart, limit: fetchLimit}): Promise<void> {
 		if (q.start < 0) q.start = 0;
 		fetchStart = q.start ?? fetchStart + fetchLimit;
 		coins = await fetchCoins({ start: fetchStart, limit: q.limit ?? fetchLimit });
@@ -98,36 +117,39 @@
 </script>
 
 <template lang="pug">
-mixin barControls
-	#controls.controls
-		button(on:click='{ fetchFirst }') &lang;&lang; &lang;&lang;
-		button(on:click='{ fetchBack }') &lang;&lang;
-		button(on:click='{ fetchMore }') &rang;&rang;
-		button(on:click='{ fetchThis }') &#10227;
 
-svlete:head
-	title Crypto Tracker
+	mixin barControls
+		#controls.controls
+			button(on:click='{ fetchFirst }') &lang;&lang; &lang;&lang;
+			button(on:click='{ fetchBack }') &lang;&lang;
+			button(on:click='{ fetchMore }') &rang;&rang;
+			button(on:click='{ fetchThis }') &#10227;
 
-main
-	h1 {name}
+	svlete:head
+		title Crypto Tracker
 
-	article.coinlist
-		+each('coins as coin')
-			CoinCard({coin})
+	main
+		h1 {name}
 
-	+if('coins.length')
-		+barControls
+		article.coinlist
+			+each('coins as coin (coin.id)')
+				CoinCard({coin})
 
-footer
-	.hellobuddy
-		a(href='https://github.com/syncap/svelte-vite-crypto' target='_blank')
-			i.github
-			| GitHub
+		+if('coins.length')
+			+barControls
 
-	.knobs
-		ThemeSwitch
+	footer
+		.info
+			| Data by
+			=' '
+			a.coinstats(href='https://www.coinstats.app' target='_new') Coin
+				b Stats
 
-IsBusy(active='{isLoading}')
+		.knobs
+			ThemeSwitch
+
+	IsBusy(active='{isLoading}')
+	GithubCorner
 
 </template>
 
@@ -135,6 +157,24 @@ IsBusy(active='{isLoading}')
 
 	a
 		color var(--color-primary)
+
+		&.coinstats
+			color var(--color-accent)
+			font-weight 100
+
+			&:before
+				content '\0a'
+				background transparent no-repeat center / cover
+				background-image url('data:image/svg+xml;charset=UT-8,%3csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2243%22 height=%2242%22%3e%3cg fill=%22none%22 fill-rule=%22evenodd%22%3e%3cpath fill=%22%23FFB347%22 d=%22M9.844 30.739l-4.328 4.292C1.958 31.19 0 26.172 0 20.888c0-5.61 2.178-10.859 6.133-14.78a21.186 21.186 0 018.55-5.15l1.337 5.954a15.041 15.041 0 00-5.574 3.492 14.698 14.698 0 00-4.37 10.165 14.696 14.696 0 003.768 10.17%22/%3e%3cpath fill=%22%23FF9332%22 d=%22M21.026 20.882L16.449.487a21.22 21.22 0 0110.395.344 21.414 21.414 0 019.141 5.357 20.715 20.715 0 015.415 9.29c.876 3.244.949 6.687.212 9.962l-20.586-4.558z%22/%3e%3cpath fill=%22%23EA5237%22 d=%22M31.557 38.954c-4.9 2.805-10.572 3.559-15.974 2.125a21.228 21.228 0 01-8.806-4.799l4.328-4.291a14.981 14.981 0 009.92 3.725 14.914 14.914 0 0010.567-4.342 14.868 14.868 0 003.518-5.518l6.027 1.334c-1.578 4.956-4.977 9.13-9.58 11.766%22/%3e%3c/g%3e%3c/svg%3e')
+				display inline-block
+				width 1em
+				margin-right 0.25em
+				height 1em
+				margin 0 .25em
+				vertical-align text-bottom
+
+			b
+				font-weight 400
 
 	h1
 		text-align center
@@ -152,20 +192,6 @@ IsBusy(active='{isLoading}')
 
 		& > *
 			margin auto
-
-		.hellobuddy
-
-			a
-				text-decoration none
-
-			.github
-				content ''
-				display inline-block
-				vertical-align middle
-				background url('data:image/svg+xml;charset=UT-8,%3csvg xmlns=%22http://www.w3.org/2000/svg%22 fill-rule=%22evenodd%22 stroke-linejoin=%22round%22 stroke-miterlimit=%222%22 clip-rule=%22evenodd%22 viewBox=%220 0 400 400%22%3e%3cg fill-rule=%22nonzero%22%3e%3cpath fill=%22%23016ec5%22 d=%22M200 400C89.5 400 0 310.5 0 200S89.5 0 200 0s200 89.5 200 200-89.6 200-200 200z%22/%3e%3cpath fill=%22%23002b59%22 d=%22M391.589 142.4C397.061 160.638 400 179.974 400 200c0 110.5-89.6 200-200 200-73.54 0-137.778-39.641-172.524-98.731L391.589 142.4z%22/%3e%3cpath fill=%22%23fff%22 d=%22M200 400C89.5 400 0 310.5 0 200S89.5 0 200 0s200 89.5 200 200-89.6 200-200 200zm-.1-388c-102.7 0-186 83.3-186 186 0 82.2 53.3 151.9 127.2 176.5 9.3 1.7 12.7-4 12.7-8.9 0-4.4-.2-19.1-.3-34.6-51.8 11.3-62.7-22-62.7-22-8.5-21.5-20.7-27.2-20.7-27.2-16.9-11.5 1.3-11.3 1.3-11.3 18.7 1.3 28.5 19.2 28.5 19.2 16.6 28.4 43.5 20.2 54.1 15.5 1.7-12 6.5-20.2 11.8-24.9-41.3-4.7-84.8-20.7-84.8-91.9 0-20.3 7.3-36.9 19.2-49.9-1.9-4.7-8.3-23.6 1.8-49.2 0 0 15.6-5 51.2 19.1 14.8-4.1 30.8-6.2 46.6-6.3 15.8.1 31.7 2.1 46.6 6.3 35.5-24.1 51.1-19.1 51.1-19.1 10.1 25.6 3.8 44.5 1.8 49.2 11.9 13 19.1 29.6 19.1 49.9 0 71.5-43.5 87.2-84.9 91.8 6.7 5.8 12.6 17.1 12.6 34.5 0 24.9-.2 44.9-.2 51.1 0 5 3.3 10.8 12.8 8.9 73.9-24.6 127.1-94.3 127.1-176.5C386 95.3 302.7 12 199.9 12z%22/%3e%3c/g%3e%3c/svg%3e') no-repeat
-				background-size contain
-				height 1.5rem
-				width @height
 
 	.coinlist
 		display grid

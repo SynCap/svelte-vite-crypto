@@ -3,7 +3,9 @@ lockfileVersion: 5.3
 specifiers:
   '@sveltejs/vite-plugin-svelte': ^1.0.0-next.11
   '@tsconfig/svelte': ^2.0.1
+  '@types/d3-scale': ^4.0.1
   autoprefixer: ^10.2.6
+  d3-scale: ^4.0.0
   postcss: ^8.3.5
   prettier: ^2.3.2
   pug: ^3.0.2
@@ -21,7 +23,9 @@ dependencies:
 devDependencies:
   '@sveltejs/vite-plugin-svelte': 1.0.0-next.11_svelte@3.38.3+vite@2.4.1
   '@tsconfig/svelte': 2.0.1
+  '@types/d3-scale': 4.0.1
   autoprefixer: 10.2.6_postcss@8.3.5
+  d3-scale: 4.0.0
   postcss: 8.3.5
   prettier: 2.3.2
   pug: 3.0.2
@@ -84,6 +88,16 @@ packages:
 
   /@tsconfig/svelte/2.0.1:
     resolution: {integrity: sha512-aqkICXbM1oX5FfgZd2qSSAGdyo/NRxjWCamxoyi3T8iVQnzGge19HhDYzZ6NrVOW7bhcWNSq9XexWFtMzbB24A==}
+    dev: true
+
+  /@types/d3-scale/4.0.1:
+    resolution: {integrity: sha512-GDuXcRcR6mKcpUVMhPNttpOzHi2dP6YcDqLZYSZHgwTZ+sfCa8e9q0VEBwZomblAPNMYpVqxojnSyIEb4s/Pwg==}
+    dependencies:
+      '@types/d3-time': 3.0.0
+    dev: true
+
+  /@types/d3-time/3.0.0:
+    resolution: {integrity: sha512-sZLCdHvBUcNby1cB6Fd3ZBrABbjz3v1Vm90nysCQ6Vt7vd6e/h9Lt7SiJUoEX0l4Dzc7P5llKyhqSi1ycSf1Hg==}
     dev: true
 
   /@types/node/16.3.0:
@@ -279,6 +293,55 @@ packages:
       urix: 0.1.0
     dev: true
 
+  /d3-array/3.0.1:
+    resolution: {integrity: sha512-l3Bh5o8RSoC3SBm5ix6ogaFW+J6rOUm42yOtZ2sQPCEvCqUMepeX7zgrlLLGIemxgOyo9s2CsWEidnLv5PwwRw==}
+    engines: {node: '>=12'}
+    dependencies:
+      internmap: 2.0.1
+    dev: true
+
+  /d3-color/3.0.1:
+    resolution: {integrity: sha512-6/SlHkDOBLyQSJ1j1Ghs82OIUXpKWlR0hCsw0XrLSQhuUPuCSmLQ1QPH98vpnQxMUQM2/gfAkUEWsupVpd9JGw==}
+    engines: {node: '>=12'}
+    dev: true
+
+  /d3-format/3.0.1:
+    resolution: {integrity: sha512-hdL7+HBIohpgfolhBxr1KX47VMD6+vVD/oEFrxk5yhmzV2prk99EkFKYpXuhVkFpTgHdJ6/4bYcjdLPPXV4tIA==}
+    engines: {node: '>=12'}
+    dev: true
+
+  /d3-interpolate/3.0.1:
+    resolution: {integrity: sha512-3bYs1rOD33uo8aqJfKP3JWPAibgw8Zm2+L9vBKEHJ2Rg+viTR7o5Mmv5mZcieN+FRYaAOWX5SJATX6k1PWz72g==}
+    engines: {node: '>=12'}
+    dependencies:
+      d3-color: 3.0.1
+    dev: true
+
+  /d3-scale/4.0.0:
+    resolution: {integrity: sha512-foHQYKpWQcyndH1CGoHdUC4PECxTxonzwwBXGT8qu+Drb1FIc6ON6dG2P5f4hRRMkLiIKeWK7iFtdznDUrnuPQ==}
+    engines: {node: '>=12'}
+    dependencies:
+      d3-array: 3.0.1
+      d3-format: 3.0.1
+      d3-interpolate: 3.0.1
+      d3-time: 3.0.0
+      d3-time-format: 4.0.0
+    dev: true
+
+  /d3-time-format/4.0.0:
+    resolution: {integrity: sha512-nzaCwlj+ZVBIlFuVOT1RmU+6xb/7D5IcnhHzHQcBgS/aTa5K9fWZNN5LCXA27LgF5WxoSNJqKBbLcGMtM6Ca6A==}
+    engines: {node: '>=12'}
+    dependencies:
+      d3-time: 3.0.0
+    dev: true
+
+  /d3-time/3.0.0:
+    resolution: {integrity: sha512-zmV3lRnlaLI08y9IMRXSDshQb5Nj77smnfpnd2LrBa/2K281Jijactokeak14QacHs/kKq0AQ121nidNYlarbQ==}
+    engines: {node: '>=12'}
+    dependencies:
+      d3-array: 3.0.1
+    dev: true
+
   /debug/3.1.0:
     resolution: {integrity: sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==}
     dependencies:
@@ -416,6 +479,11 @@ packages:
 
   /inherits/2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
+    dev: true
+
+  /internmap/2.0.1:
+    resolution: {integrity: sha512-Ujwccrj9FkGqjbY3iVoxD1VV+KdZZeENx0rphrtzmRXbFvkFO88L80BL/zeSIguX/7T+y8k04xqtgWgS5vxwxw==}
+    engines: {node: '>=12'}
     dev: true
 
   /is-binary-path/2.1.0:
