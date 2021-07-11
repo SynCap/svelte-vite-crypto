@@ -43,7 +43,8 @@
 		.visual
 			overflow auto
 			resize vertical
-			min-height 1rem
+			height 3rem
+			margin .3rem 0
 
 		.title
 			display flex
