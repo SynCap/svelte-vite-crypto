@@ -133,7 +133,8 @@ footer
 	.info
 		| Data by
 		=' '
-		a(href='https://www.coinstats.app' target='_new') Coinstats
+		a.coinstats(href='https://www.coinstats.app' target='_new') Coin
+			b Stats
 	.knobs
 		ThemeSwitch
 
@@ -146,6 +147,15 @@ GithubCorner
 
 	a
 		color var(--color-primary)
+
+		&.coinstats
+			color var(--color-accent)
+
+			&:before
+				content '\0a'
+				background-image url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MyIgaGVpZ2h0PSI0MiI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBmaWxsPSIjRkZCMzQ3IiBkPSJNOS44NDQgMzAuNzM5bC00LjMyOCA0LjI5MkMxLjk1OCAzMS4xOSAwIDI2LjE3MiAwIDIwLjg4OGMwLTUuNjEgMi4xNzgtMTAuODU5IDYuMTMzLTE0Ljc4YTIxLjE4NiAyMS4xODYgMCAwMTguNTUtNS4xNWwxLjMzNyA1Ljk1NGExNS4wNDEgMTUuMDQxIDAgMDAtNS41NzQgMy40OTIgMTQuNjk4IDE0LjY5OCAwIDAwLTQuMzcgMTAuMTY1IDE0LjY5NiAxNC42OTYgMCAwMDMuNzY4IDEwLjE3Ii8+PHBhdGggZmlsbD0iI0ZGOTMzMiIgZD0iTTIxLjAyNiAyMC44ODJMMTYuNDQ5LjQ4N2EyMS4yMiAyMS4yMiAwIDAxMTAuMzk1LjM0NCAyMS40MTQgMjEuNDE0IDAgMDE5LjE0MSA1LjM1NyAyMC43MTUgMjAuNzE1IDAgMDE1LjQxNSA5LjI5Yy44NzYgMy4yNDQuOTQ5IDYuNjg3LjIxMiA5Ljk2MmwtMjAuNTg2LTQuNTU4eiIvPjxwYXRoIGZpbGw9IiNFQTUyMzciIGQ9Ik0zMS41NTcgMzguOTU0Yy00LjkgMi44MDUtMTAuNTcyIDMuNTU5LTE1Ljk3NCAyLjEyNWEyMS4yMjggMjEuMjI4IDAgMDEtOC44MDYtNC43OTlsNC4zMjgtNC4yOTFhMTQuOTgxIDE0Ljk4MSAwIDAwOS45MiAzLjcyNSAxNC45MTQgMTQuOTE0IDAgMDAxMC41NjctNC4zNDIgMTQuODY4IDE0Ljg2OCAwIDAwMy41MTgtNS41MThsNi4wMjcgMS4zMzRjLTEuNTc4IDQuOTU2LTQuOTc3IDkuMTMtOS41OCAxMS43NjYiLz48L2c+PC9zdmc+')
+				display inline-block
+				margin-right .25em
 
 	h1
 		text-align center
