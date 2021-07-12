@@ -27,6 +27,7 @@ export interface TCoin {
 		"https://blockexplorer.one/btc/mainnet"
 	] */;
 	history?: TCoinHistory;
+	historyUrl?: string;
 }
 export type TCoinList = TCoin[];
 
