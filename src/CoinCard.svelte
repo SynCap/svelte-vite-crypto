@@ -23,8 +23,7 @@
 				span.name {coin.name}
 		span.symbol {coin.symbol}
 	.visual
-		+if('coin.history')
-			LineSpark(history='{coin.history}')
+		LineSpark(history='{coin.history}')
 	.data
 		.volume(title='Volume') { (coin.volume).toLocaleString('en-us', {style:'currency', currency: 'usd'}) }
 		.change(title='change' class:neg) { coin.priceChange1d }%

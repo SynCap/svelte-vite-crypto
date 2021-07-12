@@ -12,13 +12,19 @@ const SVELTE_IMPORTS = [
 ];
 
 export default defineConfig(({ command, mode }) => {
-	console.log('command: %s, mode: %s', command, mode);
+	console.log('\x1b[33m %s \x1b[36m %s \x1b[0m', command, mode);
 	const isProduction = mode === 'production';
 	return {
 		root: 'src/',
 		build: {
 			outDir: '../dist/',
 			emptyOutDir: true,
+			rollupOptions: {
+				external: [
+					'd3-scale',
+					'@types/d3-scale',
+				]
+			}
 		},
 		server: {
 			host: process.env.VITE_HOST ?? 'localhost',
@@ -34,7 +40,7 @@ export default defineConfig(({ command, mode }) => {
 				preprocess: sveltePreprocess({
 					sourceMap: !isProduction,
 					stylus: {
-						prependData: `@require 'src/styles/global.styl'\n`,
+						prependData: `@require 'src/styles/common.styl'\n`,
 					},
 					postcss: {
 						plugins: [require('autoprefixer')()]

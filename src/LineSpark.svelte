@@ -21,19 +21,20 @@
 		.domain([minY, maxY])
 		.range([height - 2*padding, 2*padding]);
 
-	$: minimaxY = history.reduce( (m: TMinMax, v: number[]) => {
-				return {
+	$: minimaxY = history.reduce(
+			(m: TMinMax, v: number[]) =>
+				({
 					min: (v[1] < m.min ? v[1] : m.min),
-					max: (v[1] > m.max ? v[1] : m.max) }
-				},
+					max: (v[1] > m.max ? v[1] : m.max)
+				}),
 			{min: Infinity , max: 0}
 		)
 
 	$:	minY = minimaxY.min;
 	$:	maxY = minimaxY.max;
 
-	$: minX = history[0][0];
-	$: maxX = history[history.length - 1][0];
+	$: minX = history[0][0] ?? 0;
+	$: maxX = history[history.length - 1][0] ?? 100;
 
 	$: path = `M${history.map(p => `${xScale(p[0])},${yScale(p[1])}`).join('L')}`;
 	$: area = `${path}L${xScale(maxX)},${yScale(minY)}L${xScale(minX)},${yScale(minY)}Z`;
