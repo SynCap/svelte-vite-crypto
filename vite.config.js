@@ -40,7 +40,7 @@ export default defineConfig(({ command, mode }) => {
 				preprocess: sveltePreprocess({
 					sourceMap: !isProduction,
 					stylus: {
-						prependData: `@require 'src/styles/global.styl'\n`,
+						prependData: `@require 'src/styles/common.styl'\n`,
 					},
 					postcss: {
 						plugins: [require('autoprefixer')()]
