@@ -47,7 +47,7 @@
 				return coins;
 			});
 
-		res.forEach(async coin => {
+		res.forEach(async (coin: TCoin) => {
 			coin.historyUrl = urlHistory({period:defPeriod, coinId: coin.id});
 			coin.history = await fetch(coin.historyUrl)
 					.then((response) => response.json())
