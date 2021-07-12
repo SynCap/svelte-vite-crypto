@@ -33,8 +33,8 @@
 	$:	minY = minimaxY.min;
 	$:	maxY = minimaxY.max;
 
-	$: minX = history[0][0];
-	$: maxX = history[history.length - 1][0];
+	$: minX = history[0][0] ?? 0;
+	$: maxX = history[history.length - 1][0] ?? 100;
 
 	$: path = `M${history.map(p => `${xScale(p[0])},${yScale(p[1])}`).join('L')}`;
 	$: area = `${path}L${xScale(maxX)},${yScale(minY)}L${xScale(minX)},${yScale(minY)}Z`;
