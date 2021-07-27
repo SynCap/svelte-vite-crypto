@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"types": ["svelte","vite/client","@types/d3-scale"],
-		"target": "esnext",
+		"target": "es2018",
 		"module": "esnext",
 		"strict": true,
 		"alwaysStrict": true,
