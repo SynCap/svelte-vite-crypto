@@ -42,6 +42,6 @@ export interface THistoryQuery {
 	}
 
 export interface TMinMax {
-	min?: number,
-	max?: number
+	min?: number | undefined,
+	max?: number | undefined
 }
