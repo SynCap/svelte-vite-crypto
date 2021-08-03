@@ -15,9 +15,9 @@ export default defineConfig(({ command, mode }) => {
 	console.log('\x1b[33m %s \x1b[36m %s \x1b[0m', command, mode);
 	const isProduction = mode === 'production';
 	return {
-		root: 'src/',
+		root: './src/',
 		build: {
-			outDir: '../dist/',
+			outDir: '/dist/',
 			emptyOutDir: true,
 			rollupOptions: {
 				external: [
@@ -47,7 +47,6 @@ export default defineConfig(({ command, mode }) => {
 					},
 					pug: {
 						compileDebug: !isProduction,
-						pretty: !isProduction,
 					}
 				}),
 			}),
